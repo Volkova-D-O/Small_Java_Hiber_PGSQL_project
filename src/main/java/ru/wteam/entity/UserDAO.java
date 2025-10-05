@@ -9,4 +9,3 @@ public interface UserDAO {
 
     List<User> readAllUsers();
 }
-

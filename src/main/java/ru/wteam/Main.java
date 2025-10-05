@@ -1,17 +1,41 @@
 package ru.wteam;
 
+//import org.apache.logging.log4j.core.config.ConfigurationFactory;
+import org.hibernate.SessionFactory;
+import ru.wteam.entity.UserDAO;
+import ru.wteam.entity.UserDAOClass;
 import ru.wteam.entity.UserService;
 import ru.wteam.entity.User;
 
+import java.net.URL;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final UserService userService = new UserService();
+    private static final SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+    private static final UserDAOClass userDAO = new UserDAOClass(sessionFactory);
+    private static final UserService userService = new UserService(userDAO);
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         System.out.println("Hi!");
+
+//        System.out.println("Before log!");
+//        logger.info("Привет, мир!");
+//        logger.error("Ошибкааа!");
+//        logger.debug("Отладочная информация");
+//        System.out.println("After log!");
 
         while (true) {
             System.out.println("Enter comand nomber:    1.Create    2.Read all    3.Update    4.Delete    5.Exit");
@@ -83,3 +107,8 @@ public class Main {
         System.out.println("User has been deleted!");
     }
 }
+
+
+//logger.info("Привет, мир!");
+//        logger.error("Ошибка!");
+//        logger.debug("Отладочная информация");

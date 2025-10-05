@@ -1,7 +1,9 @@
 package ru.wteam.entity;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -28,15 +30,19 @@ public class User {
     public Long getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getEmail() {
         return email;
     }
+
     public int getAge() {
         return age;
     }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -44,15 +50,19 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
+
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
@@ -66,6 +76,18 @@ public class User {
                 ", age=" + age +
                 ", createdAt=" + createdAt +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(createdAt, user.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, age, createdAt);
     }
 }
 
