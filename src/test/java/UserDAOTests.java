@@ -1,4 +1,3 @@
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.*;
@@ -23,7 +22,6 @@ public class UserDAOTests {
 
 
     private static SessionFactory sessionFactory;
-    private Session session;
     private UserDAOClass userDAO;
 
 
@@ -66,7 +64,7 @@ public class UserDAOTests {
         userDAO.createUser(newUser);
 
         assertNotNull(newUser.getId());
-        User foundUser = session.find(User.class, newUser.getId());
+        User foundUser = userDAO.readUser(newUser.getId());
         assertNotNull(foundUser, "New user must be found");
         assertEquals(newUser.getName(), foundUser.getName(), "User names must match");
         assertEquals(newUser.getEmail(), foundUser.getEmail(), "User emails must match");
@@ -90,8 +88,6 @@ public class UserDAOTests {
 
         userDAO.createUser(newUser);
 
-        session.clear();
-
         User foundUser = userDAO.readUser(newUser.getId());
 
         assertNotNull(foundUser, "User must be found");
@@ -109,14 +105,10 @@ public class UserDAOTests {
 
         userDAO.createUser(newUser);
 
-        session.clear();
-
         User updatedUser = userDAO.readUser(newUser.getId());
         updatedUser.setName("Updated Joe");
         updatedUser.setEmail("updated_joe@ololo.ru");
         userDAO.updateUser(updatedUser);
-
-        session.clear();
 
         User foundUser = userDAO.readUser(newUser.getId());
 
@@ -136,11 +128,7 @@ public class UserDAOTests {
 
         userDAO.createUser(newUser);
 
-        session.clear();
-
         userDAO.deleteUser(newUser.getId());
-
-        session.clear();
 
         User foundUser = userDAO.readUser(newUser.getId());
 
