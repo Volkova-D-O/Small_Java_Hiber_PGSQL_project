@@ -1,9 +1,10 @@
-package ru.wteam.entity;
+package ru.wteam.DAO;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import ru.wteam.entity.User;
 
 import java.util.List;
 

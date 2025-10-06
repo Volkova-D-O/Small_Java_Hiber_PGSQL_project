@@ -2,19 +2,14 @@ package ru.wteam;
 
 //import org.apache.logging.log4j.core.config.ConfigurationFactory;
 import org.hibernate.SessionFactory;
-import ru.wteam.entity.UserDAO;
-import ru.wteam.entity.UserDAOClass;
-import ru.wteam.entity.UserService;
+import ru.wteam.DAO.UserDAOClass;
+import ru.wteam.Service.UserService;
 import ru.wteam.entity.User;
 
-import java.net.URL;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import org.apache.logging.log4j.LogManager;

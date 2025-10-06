@@ -1,4 +1,7 @@
-package ru.wteam.entity;
+package ru.wteam.Service;
+
+import ru.wteam.DAO.UserDAO;
+import ru.wteam.entity.User;
 
 import java.util.List;
 
